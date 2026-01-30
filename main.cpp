@@ -92,8 +92,14 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+
         // render the triangle
         ourShader.use();
+
+        // Give the triangle an offset
+        float offset = 0.5f;
+        ourShader.setFloat("xOffset", offset);
+
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
