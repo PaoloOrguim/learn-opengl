@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(app
     src/main.cpp
+    src/stb_image.cpp
     glad.c
 )
 

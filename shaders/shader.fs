@@ -1,13 +1,15 @@
 #version 330 core
 out vec4 FragColor;
 
-//in vec3 ourColor;
-in vec3 ourPosition;
+in vec3 ourColor;
+in vec2 TexCoord;
+
+// texture samplers
+uniform sampler2D texture1;
+uniform sampler2D texture2;
 
 void main()
 {
-    //FragColor = vec4(ourColor, 1.0f);
-    FragColor = vec4(ourPosition, 1.0); // Position is interpolated giving the triangle the different colors
-    // Bottom-left coordinate of the triangle is (-0.5f, -0.5f, 0.0f), negative values are clamped to 0.0f
-    // The values only start becoming positive (therefore not black) after the center of the sides.
+	// linearly interpolate between both textures (80% container, 20% awesomeface)
+	FragColor = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.2);
 }

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/paoloubuntu/projects/learn-opengl/glad.c" "CMakeFiles/app.dir/glad.c.o" "gcc" "CMakeFiles/app.dir/glad.c.o.d"
   "/home/paoloubuntu/projects/learn-opengl/src/main.cpp" "CMakeFiles/app.dir/src/main.cpp.o" "gcc" "CMakeFiles/app.dir/src/main.cpp.o.d"
+  "/home/paoloubuntu/projects/learn-opengl/src/stb_image.cpp" "CMakeFiles/app.dir/src/stb_image.cpp.o" "gcc" "CMakeFiles/app.dir/src/stb_image.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

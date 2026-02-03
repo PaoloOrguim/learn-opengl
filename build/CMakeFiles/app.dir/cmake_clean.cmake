@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/glad.c.o.d"
   "CMakeFiles/app.dir/src/main.cpp.o"
   "CMakeFiles/app.dir/src/main.cpp.o.d"
+  "CMakeFiles/app.dir/src/stb_image.cpp.o"
+  "CMakeFiles/app.dir/src/stb_image.cpp.o.d"
   "app"
   "app.pdb"
 )
