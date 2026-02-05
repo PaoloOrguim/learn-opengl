@@ -188,8 +188,12 @@ int main()
 
         // Transformations
         glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        //transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));  // Translating second makes it rotate around its own center
+                                                                                // (that coincides with the origin (0,0)) and then move to the final position
         transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));    // Translate first makes the image not have its center aligned with the origin
+                                                                                // (0, 0) during rotation, so it seems to rotate around the top-right corner
+                                                                                // which is aligned with the origin
 
         // get matrix's uniform location and set matrix
         ourShader.use();
