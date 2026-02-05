@@ -188,10 +188,10 @@ int main()
 
         // Transformations
         glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        //transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));  // Translating second makes it rotate around its own center
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));  // Translating second makes it rotate around its own center
                                                                                 // (that coincides with the origin (0,0)) and then move to the final position
         transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));    // Translate first makes the image not have its center aligned with the origin
+        //transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));    // Translate first makes the image not have its center aligned with the origin
                                                                                 // (0, 0) during rotation, so it seems to rotate around the top-right corner
                                                                                 // which is aligned with the origin
 
@@ -207,6 +207,17 @@ int main()
         // render the triangle
         ourShader.use();
 
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        // Draw a second rectangle on the top left
+        transform = glm::mat4(1.0f);    // If we don't reset it, the new transformations will be applied on top of the previous ones
+        transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
+        transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        ourShader.use();
+        transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+        ourShader.use();
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
