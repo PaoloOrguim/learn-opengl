@@ -187,8 +187,20 @@ int main()
         glBindTexture(GL_TEXTURE_2D, texture2);
 
         // Going 3D
+        // --------
         glm::mat4 model = glm::mat4(1.0f);  // Local Space -> World Space happens through the model matrix
         model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+        glm::mat4 view = glm::mat4(1.0f);
+        // note that we're translating the scene in the reverse direction of where we want to move
+        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        // We multiply in the correct order: View * Model
+        model = view * model;
+
+        glm::mat4 projection;
+        projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+
+        model = projection * model; // Remember: Projection * View * Model
 
         // get matrix's uniform location and set matrix
         ourShader.use();
