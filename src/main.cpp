@@ -55,6 +55,10 @@ int main()
         return -1;
     }
 
+    // configure global opengl state
+    // -----------------------------
+    glEnable(GL_DEPTH_TEST);
+
     // build and compile our shader program
     // ------------------------------------
     Shader ourShader("shaders/shader.vs", "shaders/shader.fs"); // you can name your shader files however you like
@@ -201,7 +205,7 @@ int main()
         // render
         // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear depth buffer
 
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
