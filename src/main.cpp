@@ -210,14 +210,13 @@ int main()
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-        // Draw a second rectangle on the top left
+        // Draw a second rectangle on the top left and make it scale over time
         transform = glm::mat4(1.0f);    // If we don't reset it, the new transformations will be applied on top of the previous ones
         transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
-        transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-        ourShader.use();
-        transformLoc = glGetUniformLocation(ourShader.ID, "transform");
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
-        ourShader.use();
+        float scaleAmount = static_cast<float>(sin(glfwGetTime())); // We use static_cast to avoid double to float conversion warning because sin returns a double
+        transform = glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, &transform[0][0]);    // this time take the matrix value array's first element as its memory pointer value
+        
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
