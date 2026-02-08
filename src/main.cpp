@@ -207,6 +207,10 @@ int main()
     // or set it via the texture class
     ourShader.setInt("texture2", 1);
 
+    // Projection ---- It does not update every frame, so we set it outside the render loop
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    ourShader.setMat4("projection", projection);
 
     // render loop
     // -----------
@@ -234,13 +238,13 @@ int main()
         
         // View
         glm::mat4 view = glm::mat4(1.0f);
-        // note that we're translating the scene in the reverse direction of where we want to move
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-        // We multiply in the correct order: View * Model
+        const float radius = 10.0f;
+        float camX = sin(glfwGetTime()) * radius;
+        float camZ = cos(glfwGetTime()) * radius;
+        view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 
-        // Projection
-        glm::mat4 projection;
-        projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+        // note that we're translating the scene in the reverse direction of where we want to move
+        //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
 
         // get matrix's uniform location and set matrix
@@ -249,16 +253,12 @@ int main()
         unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
         
-        unsigned int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
-        ourShader.setMat4("projection", projection);
 
         // set the texture mix value in the shader
         ourShader.setFloat("mixValue", mixValue);
 
 
         // render the triangle
-        ourShader.use();
-
         glBindVertexArray(VAO);
         for(unsigned int i = 1; i < 11; i++)
         {
