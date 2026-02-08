@@ -231,8 +231,6 @@ int main()
         // --------
 
         // Model
-        glm::mat4 model = glm::mat4(1.0f);  // Local Space -> World Space happens through the model matrix
-        model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
         
         // View
         glm::mat4 view = glm::mat4(1.0f);
@@ -247,8 +245,6 @@ int main()
 
         // get matrix's uniform location and set matrix
         ourShader.use();
-        unsigned int modelLoc = glGetUniformLocation(ourShader.ID, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
         unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
@@ -263,7 +259,6 @@ int main()
         // render the triangle
         ourShader.use();
 
-        glBindVertexArray(VAO);
         glBindVertexArray(VAO);
         for(unsigned int i = 1; i < 11; i++)
         {
