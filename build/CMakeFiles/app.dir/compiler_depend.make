@@ -72,6 +72,7 @@ CMakeFiles/app.dir/glad.c.o: /home/paoloubuntu/projects/learn-opengl/glad.c \
 
 CMakeFiles/app.dir/src/main.cpp.o: /home/paoloubuntu/projects/learn-opengl/src/main.cpp \
   /home/paoloubuntu/projects/learn-opengl/include/KHR/khrplatform.h \
+  /home/paoloubuntu/projects/learn-opengl/include/camera.h \
   /home/paoloubuntu/projects/learn-opengl/include/glad/glad.h \
   /home/paoloubuntu/projects/learn-opengl/include/glm/common.hpp \
   /home/paoloubuntu/projects/learn-opengl/include/glm/detail/func_exponential.inl \
@@ -1140,12 +1141,6 @@ CMakeFiles/app.dir/src/stb_image.cpp.o: /home/paoloubuntu/projects/learn-opengl/
 
 /home/paoloubuntu/projects/learn-opengl/include/glm/detail/func_vector_relational.inl:
 
-/home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_double3x3.hpp:
-
-/home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_float4x3.hpp:
-
-/home/paoloubuntu/projects/learn-opengl/include/glm/ext/vector_double2_precision.hpp:
-
 /usr/include/c++/13/bits/chrono.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
@@ -1182,11 +1177,9 @@ CMakeFiles/app.dir/src/stb_image.cpp.o: /home/paoloubuntu/projects/learn-opengl/
 
 /home/paoloubuntu/projects/learn-opengl/include/glm/mat4x3.hpp:
 
-/usr/include/c++/13/bits/stl_bvector.h:
+/usr/include/assert.h:
 
-/home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_double4x3.hpp:
-
-/home/paoloubuntu/projects/learn-opengl/include/glm/detail/type_vec1.hpp:
+/home/paoloubuntu/projects/learn-opengl/glad.c:
 
 /usr/include/features-time64.h:
 
@@ -1239,6 +1232,14 @@ CMakeFiles/app.dir/src/stb_image.cpp.o: /home/paoloubuntu/projects/learn-opengl/
 /usr/include/alloca.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/c++/13/bits/stl_bvector.h:
+
+/home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_double4x3.hpp:
+
+/home/paoloubuntu/projects/learn-opengl/include/glm/detail/type_vec1.hpp:
+
+/home/paoloubuntu/projects/learn-opengl/include/camera.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
@@ -1357,6 +1358,12 @@ CMakeFiles/app.dir/src/stb_image.cpp.o: /home/paoloubuntu/projects/learn-opengl/
 /usr/include/c++/13/bits/exception_defines.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_double3x3.hpp:
+
+/home/paoloubuntu/projects/learn-opengl/include/glm/ext/vector_double2_precision.hpp:
+
+/home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_float4x3.hpp:
 
 /home/paoloubuntu/projects/learn-opengl/include/glm/ext/matrix_float4x3_precision.hpp:
 
@@ -1651,7 +1658,3 @@ CMakeFiles/app.dir/src/stb_image.cpp.o: /home/paoloubuntu/projects/learn-opengl/
 /home/paoloubuntu/projects/learn-opengl/include/glm/detail/type_mat3x3.inl:
 
 /usr/include/asm-generic/errno-base.h:
-
-/home/paoloubuntu/projects/learn-opengl/glad.c:
-
-/usr/include/assert.h:
