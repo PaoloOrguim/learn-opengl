@@ -31,25 +31,37 @@ Demonstration of the latest version:
 
 #### Hello Triangle
 
+Starting the project with a triangle as a 'Hello, world!'
+
 ![HelloTriangle](./docs/media/colorful_triangle.png)
 
 #### Shaders
+
+Adding shaders
 
 ![Shaders](./docs/media/shaders_texture.png)
 
 #### Textures
 
+Different textures layered on one another
+
 ![Textures](./docs/media/layered_textures.png)
 
 #### Transformations
+
+Translating, scaling and rotating different objects around the scene
 
 ![Transformations](./docs/media/scaling_rotating.gif)
 
 #### Coordinates
 
+Adding a coordinate system
+
 ![Coordinates](./docs/media/many_rotating_cubes.gif)
 
 #### Camera
+
+Free camera to move around
 
 ![Freecam](./docs/media/free_camera.gif)
 
@@ -57,7 +69,15 @@ Demonstration of the latest version:
 
 #### Basic Lighting
 
+Phong lighting
+
 ![Phong](./docs/media/basic_lighting.png)
+
+#### Different Materials
+
+How different materials interact differently with light
+
+![Materials](./docs/media/materials.png)
 
 ## Credits
 
