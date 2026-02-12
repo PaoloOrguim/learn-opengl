@@ -31,19 +31,33 @@ Demonstration of the latest version:
 
 #### Hello Triangle
 
+![HelloTriangle](./docs/media/colorful_triangle.png)
+
 #### Shaders
+
+![Shaders](./docs/media/shaders_texture.png)
 
 #### Textures
 
+![Textures](./docs/media/layered_textures.png)
+
 #### Transformations
+
+![Transformations](./docs/media/scaling_rotating.gif)
 
 #### Coordinates
 
+![Coordinates](./docs/media/many_rotating_cubes.gif)
+
 #### Camera
+
+![Freecam](./docs/media/free_camera.gif)
 
 ### Lighting
 
 #### Basic Lighting
+
+![Phong](./docs/media/basic_lighting.png)
 
 ## Credits
 
@@ -69,3 +83,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
