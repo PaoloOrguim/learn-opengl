@@ -12,7 +12,7 @@ This is a hands-on learning project where I explore Modern OpenGL step by step. 
 
 ## Demo showcase
 
-Demonstration of the latest version:
+Demonstration of the coolest recent version:
 
 ![Demo](./docs/media/demo.gif)
 
