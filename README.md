@@ -79,6 +79,12 @@ How different materials interact differently with light
 
 ![Materials](./docs/media/materials.png)
 
+#### Lighting Maps
+
+Using textures to give the object more realistic lighting properties
+
+![Maps](./docs/media/lighting_maps.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:

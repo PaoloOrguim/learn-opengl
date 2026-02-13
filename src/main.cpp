@@ -234,11 +234,13 @@ int main()
     // load textures (we now use a utility function to keep the code more organized)
     // -----------------------------------------------------------------------------
     unsigned int diffuseMap = loadTexture("resources/textures/container2.png");
+    unsigned int specularMap = loadTexture("resources/textures/container2_specular.png");
 
     // shader configuration
     // --------------------
     lightingShader.use();
     lightingShader.setInt("material.diffuse", 0);
+    lightingShader.setInt("material.specular", 1);
 
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
@@ -294,30 +296,6 @@ int main()
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
-        glBindVertexArray(cubeVAO);
-        for (int i = 0; i < n; i++){
-            int row = i / cols;
-            int column = i % cols;
-
-            float x = startX + column * spacing;
-            float z = startZ - row * rowSpacingZ;
-
-            // Set material uniforms for this cube
-            const Material &m = materials[i];
-
-            lightingShader.setVec3("material.ambient", m.ambient);
-            lightingShader.setVec3("material.diffuse", m.diffuse);
-            lightingShader.setVec3("material.specular", m.specular);
-            lightingShader.setFloat("material.shininess", m.shininess * 128);   // Table warns to multiply shininess by 128
-
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, glm::vec3(x, 0.0f, z));
-            model = glm::scale(model, glm::vec3(0.8f)); // Slightly smaller cubes
-            lightingShader.setMat4("model", model);
-
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-
         // material properties
         lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
         lightingShader.setFloat("material.shininess", 64.0f);
@@ -330,6 +308,9 @@ int main()
         // bind diffuse map
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        // bind specular map
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, specularMap);
 
         // render the cube
         glBindVertexArray(cubeVAO);
