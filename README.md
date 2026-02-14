@@ -89,6 +89,16 @@ Glow lighting map
 
 ![Glow](./docs/media/glow_effect.png)
 
+#### Light Casters
+
+Directional Light
+
+![DirLit](./docs/media/directional_light.png)
+
+Point Light with Attenuation
+
+![PointLit](./docs/media/point_light.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:
