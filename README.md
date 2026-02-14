@@ -99,6 +99,10 @@ Point Light with Attenuation
 
 ![PointLit](./docs/media/point_light.png)
 
+Flashlight implemented using spotlight and soft edges
+
+![Flashlight](./docs/media/spotlight_flashlight.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:
