@@ -103,6 +103,10 @@ Flashlight implemented using spotlight and soft edges
 
 ![Flashlight](./docs/media/spotlight_flashlight.png)
 
+#### Multiple Different Light Casters
+
+![MultLit](./docs/media/multiple_lights.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:
