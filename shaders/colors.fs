@@ -6,6 +6,8 @@ struct Material {
     sampler2D diffuse;
     sampler2D specular;
     float shininess;
+    // Texture be applied only on spotlight
+    sampler2D spotTexture;
 }; 
 
 struct DirLight {
@@ -138,8 +140,8 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     float epsilon = light.cutOff - light.outerCutOff;
     float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
     // combine results
-    vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
-    vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
+    vec3 ambient = light.ambient * vec3(texture(material.spotTexture, TexCoords));
+    vec3 diffuse = light.diffuse * diff * vec3(texture(material.spotTexture, TexCoords));
     vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords));
     ambient *= attenuation * intensity;
     diffuse *= attenuation * intensity;

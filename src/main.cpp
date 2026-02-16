@@ -55,7 +55,7 @@ int main()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Spotlight (flashlight)", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Spotlight Texture", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -198,6 +198,7 @@ int main()
     // -----------------------------------------------------------------------------
     unsigned int diffuseMap = loadTexture("resources/textures/container2.png");
     unsigned int specularMap = loadTexture("resources/textures/container2_specular.png");
+    unsigned int spotlightMap = loadTexture("resources/textures/winton.png");
     //unsigned int emissionMap = loadTexture("resources/textures/emission.png");
 
     // shader configuration
@@ -205,6 +206,7 @@ int main()
     lightingShader.use();
     lightingShader.setInt("material.diffuse", 0);
     lightingShader.setInt("material.specular", 1);
+    lightingShader.setInt("material.spotTexture", 2);
     //lightingShader.setInt("material.emission", 2);
 
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
@@ -307,6 +309,9 @@ int main()
         // bind specular map
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
+        // bind spotlight map
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, spotlightMap);
         // bind emission map
         //glActiveTexture(GL_TEXTURE2);
         //glBindTexture(GL_TEXTURE_2D, emissionMap);
