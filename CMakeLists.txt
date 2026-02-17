@@ -13,8 +13,10 @@ target_include_directories(app PRIVATE include)
 
 find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
+find_package(assimp REQUIRED)
 
 target_link_libraries(app
     glfw
     OpenGL::GL
+    assimp::assimp
 )
