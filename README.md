@@ -107,6 +107,12 @@ Flashlight implemented using spotlight and soft edges
 
 ![MultLit](./docs/media/multiple_lights.png)
 
+### Model Loading
+
+Backpack model
+
+![ModelLoad](./docs/media/backpack_model.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:
