@@ -172,6 +172,7 @@ int main()
         // ------
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear depth buffer
+        glEnable(GL_CULL_FACE);
 
         // be sure to activate shader when setting uniforms/drawing objects
         ourShader.use();
@@ -190,6 +191,7 @@ int main()
         ourModel.Draw(ourShader);
 
         //glm::mat4 model = glm::mat4(1.0f);
+        glDisable(GL_CULL_FACE);
         // windows (from furthest to nearest)
         glBindVertexArray(transparentVAO);
         glBindTexture(GL_TEXTURE_2D, transparentTexture);
