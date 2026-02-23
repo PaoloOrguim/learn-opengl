@@ -113,6 +113,14 @@ Backpack model
 
 ![ModelLoad](./docs/media/backpack_model.png)
 
+### Advanced OpenGL
+
+#### Blending
+
+Rendering semi transparent windows
+
+![Windows](./docs/media/transparent_windows.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:
