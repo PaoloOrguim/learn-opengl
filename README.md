@@ -12,7 +12,7 @@ This is a hands-on learning project where I explore Modern OpenGL step by step. 
 
 ## Demo showcase
 
-Demonstration of the coolest recent version:
+Demonstration of the coolest recent version (gif is not HD):
 
 ![Demo](./docs/media/demo.gif)
 
@@ -120,6 +120,12 @@ Backpack model
 Rendering semi transparent windows
 
 ![Windows](./docs/media/transparent_windows.png)
+
+#### Cubemaps
+
+A skybox that seems to be infinitely far away
+
+![Cubemap](./docs/media/cubemap.png)
 
 ## Credits
 
