@@ -127,6 +127,14 @@ A skybox that seems to be infinitely far away
 
 ![Cubemap](./docs/media/cubemap.png)
 
+### Advanced Lighting
+
+#### Shadows
+
+Shadow mapping utilizing orthographic projection and PCF
+
+![ShadowOrtho](./docs/media/shadow_ortho.png)
+
 ## Credits
 
 This project follows the structure and concepts presented in:
