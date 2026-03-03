@@ -4,7 +4,7 @@ out vec4 FragColor;
 in vec2 TexCoords;
 
 uniform sampler2D texture_diffuse1;
-uniform samplerCube skybox;
+//uniform samplerCube skybox;
 
 void main()
 {    
