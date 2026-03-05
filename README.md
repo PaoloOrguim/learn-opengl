@@ -135,6 +135,13 @@ Shadow mapping utilizing orthographic projection and PCF
 
 ![ShadowOrtho](./docs/media/shadow_ortho.png)
 
+#### Normal Mapping
+
+Normal map highlighting surface imperfections
+
+![NormalMap](./docs/media/normal_mapping.png)
+
+
 ## Credits
 
 This project follows the structure and concepts presented in:
