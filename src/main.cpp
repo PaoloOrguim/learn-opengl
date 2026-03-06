@@ -182,6 +182,8 @@ int main()
     shader.setInt("diffuseTexture", 0);
     shader.setInt("normalMap", 1);
     shader.setInt("depthMap", 2);
+    shader.setInt("interiorCube", 3);
+    shader.setInt("cubeIsTangentSpace", 0);
     //debugDepthQuad.use();
     //debugDepthQuad.setInt("depthMap", 0);
 
@@ -244,20 +246,20 @@ int main()
     // glEnableVertexAttribArray(0);
     // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
-    stbi_set_flip_vertically_on_load(false);
+    stbi_set_flip_vertically_on_load(true);
 
     // load textures
     // -------------
-    // vector<std::string> faces
-    // {
-    //     "resources/textures/skybox/right.jpg",
-    //     "resources/textures/skybox/left.jpg",
-    //     "resources/textures/skybox/top.jpg",
-    //     "resources/textures/skybox/bottom.jpg",
-    //     "resources/textures/skybox/front.jpg",
-    //     "resources/textures/skybox/back.jpg",
-    // };
-    // unsigned int cubemapTexture = loadCubemap(faces);
+    vector<std::string> faces
+    {
+        "resources/textures/DallasW/posx_right.jpg",
+        "resources/textures/DallasW/negx_left.jpg",
+        "resources/textures/DallasW/posy_top.jpg",
+        "resources/textures/DallasW/negy_bottom.jpg",
+        "resources/textures/DallasW/posz_front.jpg",
+        "resources/textures/DallasW/negz_back.jpg",
+    };
+    unsigned int cubemapTexture = loadCubemap(faces);
 
     // shader configuration
     // --------------------
@@ -297,18 +299,22 @@ int main()
         shader.setMat4("view", view);
         // render parallax-mapped quad
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show parallax mapping from multiple directions
+        // model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show parallax mapping from multiple directions
         shader.setMat4("model", model);
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
         shader.setFloat("heightScale", heightScale); // adjust with Q and E keys
         // std::cout << heightScale << std::endl;
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        //glActiveTexture(GL_TEXTURE0);
+        //glBindTexture(GL_TEXTURE_2D, diffuseMap);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, normalMap);
-        glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, heightMap);
+        //glActiveTexture(GL_TEXTURE2);
+        //glBindTexture(GL_TEXTURE_2D, heightMap);
+
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+
         renderQuad();
 
         // render light source (simply re-renders a smaller plane at the light's position for debugging/visualization)
@@ -615,6 +621,22 @@ void processInput(GLFWwindow *window)
         shadows = !shadows;
         shadowsKeyPressed = true;
     }
+
+     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+    {
+        if (heightScale > 0.0f)
+            heightScale -= 0.0005f;
+        else
+            heightScale = 0.0f;
+    }
+    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+    {
+        if (heightScale < 1.0f)
+            heightScale += 0.0005f;
+        else
+            heightScale = 1.0f;
+    }
+
     if (glfwGetKey(window, GLFW_KEY_V) == GLFW_RELEASE)
     {
         shadowsKeyPressed = false;
