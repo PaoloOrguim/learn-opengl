@@ -141,6 +141,12 @@ Normal map highlighting surface imperfections
 
 ![NormalMap](./docs/media/normal_mapping.png)
 
+#### Parallax Mapping
+
+Parallax occlusion mapping, increasing depth details without increasing complexity of the model
+
+![POM](./docs/media/parallax_occlusion_mapping.png)
+
 
 ## Credits
 

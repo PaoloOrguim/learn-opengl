@@ -30,6 +30,7 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 bool shadows = true;
 bool shadowsKeyPressed = false;
+float heightScale = 0.1f;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -108,7 +109,8 @@ int main()
     // Shader shader("shaders/point_shadow.vs", "shaders/point_shadow.fs");
     // Shader shader("shaders/shadow_mapping.vs", "shaders/shadow_mapping.fs");
     // Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
-    Shader shader("shaders/normal_mapping.vs", "shaders/normal_mapping.fs");
+    // Shader shader("shaders/normal_mapping.vs", "shaders/normal_mapping.fs");
+    Shader shader("shaders/parallax_mapping.vs", "shaders/parallax_mapping.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -140,8 +142,9 @@ int main()
     // load textures
     // -------------
     // unsigned int woodTexture = loadTexture("resources/textures/wood.png");
-    unsigned int diffuseMap = loadTexture("resources/textures/brickwall.jpg");
-    unsigned int normalMap = loadTexture("resources/textures/brickwall_normal.jpg");
+    unsigned int diffuseMap = loadTexture("resources/textures/bricks2.jpg");
+    unsigned int normalMap = loadTexture("resources/textures/bricks2_normal.jpg");
+    unsigned int heightMap = loadTexture("resources/textures/bricks2_disp.jpg");
 
     // configure depth map FBO
     // -----------------------
@@ -178,7 +181,7 @@ int main()
     shader.use();
     shader.setInt("diffuseTexture", 0);
     shader.setInt("normalMap", 1);
-    // shader.setInt("depthMap", 1);
+    shader.setInt("depthMap", 2);
     //debugDepthQuad.use();
     //debugDepthQuad.setInt("depthMap", 0);
 
@@ -292,16 +295,20 @@ int main()
         glm::mat4 view = camera.GetViewMatrix();
         shader.setMat4("projection", projection);
         shader.setMat4("view", view);
-        // render normal-mapped quad
+        // render parallax-mapped quad
         glm::mat4 model = glm::mat4(1.0f);
-        //model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show normal mapping from multiple directions
+        model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show parallax mapping from multiple directions
         shader.setMat4("model", model);
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
+        shader.setFloat("heightScale", heightScale); // adjust with Q and E keys
+        // std::cout << heightScale << std::endl;
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, normalMap);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, heightMap);
         renderQuad();
 
         // render light source (simply re-renders a smaller plane at the light's position for debugging/visualization)
@@ -491,7 +498,7 @@ void renderQuad()
         // texture coordinates
         glm::vec2 uv1(0.0f, 1.0f);
         glm::vec2 uv2(0.0f, 0.0f);
-        glm::vec2 uv3(1.0f, 0.0f);  
+        glm::vec2 uv3(1.0f, 0.0f);
         glm::vec2 uv4(1.0f, 1.0f);
         // normal vector
         glm::vec3 nm(0.0f, 0.0f, 1.0f);
@@ -511,10 +518,12 @@ void renderQuad()
         tangent1.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
         tangent1.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
         tangent1.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+        tangent1 = glm::normalize(tangent1);
 
         bitangent1.x = f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x);
         bitangent1.y = f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y);
         bitangent1.z = f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z);
+        bitangent1 = glm::normalize(bitangent1);
 
         // triangle 2
         // ----------
@@ -528,11 +537,13 @@ void renderQuad()
         tangent2.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
         tangent2.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
         tangent2.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+        tangent2 = glm::normalize(tangent2);
 
 
         bitangent2.x = f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x);
         bitangent2.y = f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y);
         bitangent2.z = f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z);
+        bitangent2 = glm::normalize(bitangent2);
 
 
         float quadVertices[] = {
