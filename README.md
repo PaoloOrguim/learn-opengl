@@ -147,6 +147,12 @@ Parallax occlusion mapping, increasing depth details without increasing complexi
 
 ![POM](./docs/media/parallax_occlusion_mapping.png)
 
+#### Bloom
+
+Bloom effect on bright objects
+
+![Bloom](./docs/media/bloom.png)
+
 
 ## Credits
 
